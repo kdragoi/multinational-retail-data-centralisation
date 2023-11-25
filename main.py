@@ -10,6 +10,14 @@ from data_cleaning   import DataCleaning
 #%%
 
 def upload_dim_users():
+    '''Extracts and uploads cleaned 'legacy_users' data to 'dim_users' table in the database:
+        - Initialises DatabaseConnector, DataExtractor, and DataCleaning class instances
+        - Initialises the database engine using credentials from 'db_creds.yaml'
+        - Reads 'legacy_users' data into pandas dataframe
+        - Cleans user data
+        - Uploads cleaned user data to 'dim_users' table in the local database
+    Function contains lines of code which can be used for checking and tracking changes are hashed out '''
+    
     db = DatabaseConnector()
     de = DataExtractor()
     dc = DataCleaning()
@@ -27,6 +35,13 @@ def upload_dim_users():
     db.upload_to_db(cleaned_users, 'dim_users', engine)
 
 def upload_dim_card_details():
+    ''' Extracts and uploads cleaned card details data to 'dim_card_details' table in the database:
+        - Initialises DatabaseConnector, DataExtractor, and DataCleaning class instances
+        - Retrieves card details data from 'card_details.pdf' and stores as pandas dataframe
+        - Cleans card details data
+        - Uploads cleaned card details to 'dim_card_details' table in the local database
+    Function contains lines of code which can be used for checking and tracking changes are hashed out'''
+    
     db = DatabaseConnector()
     de = DataExtractor()
     dc = DataCleaning()
@@ -41,6 +56,14 @@ def upload_dim_card_details():
     db.upload_to_db(cleaned_card_details, 'dim_card_details', engine)
 
 def upload_dim_store_details():
+    ''' Extracts and uploads cleaned store details data to 'dim_store_details' table in the database:
+        - Initialises DatabaseConnector, DataExtractor, and DataCleaning class instances
+        - Reads API key from 'api_key.yaml'
+        - Retrieves store details data using the API key and stores as pandas dataframe
+        - Cleans store details data
+        - Uploads cleaned store details to 'dim_store_details' table in the local database
+    Function contains lines of code which can be used for checking and tracking changes are hashed out'''
+
     db = DatabaseConnector()
     de = DataExtractor()
     dc = DataCleaning()
@@ -56,6 +79,13 @@ def upload_dim_store_details():
     db.upload_to_db(cleaned_store_details, 'dim_store_details', engine)
 
 def upload_dim_products():
+    ''' Extracts and uploads cleaned product data to 'dim_products' table in the database:
+        - Initialises DatabaseConnector, DataExtractor, and DataCleaning class instances
+        - Extracts product data from an S3 source and stores as pandas dataframe
+        - Cleans product data
+        - Uploads cleaned product data to 'dim_products' table in the local database
+    Function contains lines of code which can be used for checking and tracking changes are hashed out'''
+    
     db = DatabaseConnector()
     de = DataExtractor()
     dc = DataCleaning()
@@ -70,6 +100,14 @@ def upload_dim_products():
     db.upload_to_db(cleaned_products_table, 'dim_products', engine)
 
 def upload_orders_table():
+    '''Extracts and uploads cleaned 'orders_table' data to 'orders_table' table in the database:
+            - Initialises DatabaseConnector, DataExtractor, and DataCleaning class instances
+            - Initialises the database engine using credentials from 'db_creds.yaml'
+            - Reads 'orders_table' data into pandas dataframe
+            - Cleans orders data
+            - Uploads cleaned orders data to 'orders_table' table in the local database
+        Function contains lines of code which can be used for checking and tracking changes are hashed out '''
+
     db = DatabaseConnector()
     de = DataExtractor()
     dc = DataCleaning()
@@ -87,6 +125,13 @@ def upload_orders_table():
     db.upload_to_db(cleaned_orders_table, 'orders_table', engine)
 
 def upload_dim_date_times():
+    ''' Extracts and uploads cleaned date-time data to 'dim_date_times' table in the database:
+        - Initialises DatabaseConnector, DataExtractor, and DataCleaning class instances
+        - Extracts date-time data from an S3 source via URL and stores as pandas dataframe
+        - Cleans date_time data
+        - Uploads cleaned date-time data to 'dim_date_times' table in the local database
+    Function contains lines of code which can be used for checking and tracking changes are hashed out'''
+
     db = DatabaseConnector()
     de = DataExtractor()
     dc = DataCleaning()
