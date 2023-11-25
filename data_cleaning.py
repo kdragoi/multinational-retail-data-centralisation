@@ -166,16 +166,21 @@ class DataCleaning():
         self.remove_null(df)
 
     def clean_store_data(self, df):
+        # This method nans had to be dropped for individual tables as web store only contain valid data for some of the columns and therefore we need to account for that
         df.set_index('index', inplace=True)
         df.drop(columns='lat', inplace=True)
         self.is_float(df, 'longitude')
         self.is_float(df, 'staff_numbers')
+        df.dropna(subset = ['staff_numbers'],how='any',inplace= True)
         self.valid_date(df, 'opening_date')
+        df.dropna(subset = ['opening_date'],how='any',inplace= True)
         self.valid_store_type(df, 'store_type')
+        df.dropna(subset = ['store_type'],how='any',inplace= True)
         self.is_float(df, 'latitude')
         self.valid_country_code(df, 'country_code')
+        df.dropna(subset = ['country_code'],how='any',inplace= True)
         self.valid_continent(df, 'continent')
-        self.remove_null(df)
+        df.dropna(subset = ['continent'],how='any',inplace= True)
     
     def clean_products_data(self, df):
         df['product_price'] = (df['product_price'].apply(str)).str.replace('£', '')
